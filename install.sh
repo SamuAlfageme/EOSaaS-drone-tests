@@ -18,3 +18,7 @@ install "kind" "https://github.com/kubernetes-sigs/kind/releases/download/${KIND
 
 #installing kubectl
 install "kubectl" "https://storage.googleapis.com/kubernetes-release/release/${KUBECTL}/bin/linux/amd64/kubectl"
+
+# installing helm
+export VERIFY_CHECKSUM=false
+wget -O - -o /dev/null https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | sh

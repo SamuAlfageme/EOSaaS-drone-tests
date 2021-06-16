@@ -29,14 +29,17 @@ steps:
       - push
 
   - name: test
-    image: alpine:3.9
+    image: alpine:latest
     pull: always
     depends_on: [ setup ]
     environment:
       KUBECONFIG: /mnt/config/admin.conf
     commands:
       - ./install.sh
-      - kubectl get nodes
+      - helm repo add eos https://registry.cern.ch/chartrepo/eos
+      - helm repo update
+      - helm install eos eos/server
+      - kubectl wait statefulset --all --for condition=ready
     volumes:
       - name: kubeconfig
         path: /mnt/config
