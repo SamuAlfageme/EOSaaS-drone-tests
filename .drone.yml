@@ -38,8 +38,7 @@ steps:
       - ./install.sh
       - helm repo add eos https://registry.cern.ch/chartrepo/eos
       - helm repo update
-      - helm install eos eos/server
-      - kubectl wait statefulset --all --for condition=ready --timeout=600s
+      - helm install eos eos/server --version 0.0.1 --wait
     volumes:
       - name: kubeconfig
         path: /mnt/config
